@@ -6,8 +6,8 @@ import pandas
 #
 #
 # oi
-#
-#
+# Testando
+# 
 #
 # ----------------------------------------------------------------------------------------------
 usuarios = pandas.read_csv("usuarios.csv", header=None)
@@ -24,3 +24,9 @@ print()
 print("conexoes T [0]")
 print(conexoes.T[0])
 
+class Grafo():
+
+    def __init__(self):
+        self.matrizAdj = {}
+
+    
