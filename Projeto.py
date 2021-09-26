@@ -1,4 +1,5 @@
 import pandas
+import numpy as np
 
 # ----------------------------------------------------------------------------------------------
 # 
@@ -7,19 +8,19 @@ import pandas
 #
 #
 # ----------------------------------------------------------------------------------------------
-usuarios = pandas.read_csv("usuarios.csv", header=None)
-print("Usuarios: ")
-print(usuarios.T)
-print()
+# usuarios = pandas.read_csv("usuarios.csv", header=None)
+# print("Usuarios: ")
+# print(usuarios.T)
+# print()
 
 
 
-conexoes = pandas.read_csv("conexoes.csv", header=None )
-print("conexoes: ")
-print(conexoes.T)
-print()
-print("conexoes T [0]")
-print(conexoes.T[0])
+# conexoes = pandas.read_csv("conexoes.csv", header=None )
+# print("conexoes: ")
+# print(conexoes.T)
+# print()
+# print("conexoes T [0]")
+# print(conexoes.T[0])
 
 # ----------------------------------------------------------------------------------------------
 # 
@@ -39,6 +40,11 @@ class Grafo():
     def conectaGrafo(self, origem, destino, peso):
         self.matrizAdj[origem][destino] = peso
 
-    # def carregaGrafos(self, arquivo):
-    #     pandas.read_csv(arquivo, header=None)
+    def carregaGrafos(self, arquivo):
+        df = pandas.read_csv(arquivo, header=None)
+        for usernames in df[1]:
+            print(usernames)
+
+odisseia = Grafo()
+odisseia.carregaGrafos("usuarios.csv")
 
