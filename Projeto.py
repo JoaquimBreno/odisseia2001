@@ -51,13 +51,7 @@ class Grafo():
             self.conectaGrafo(linha[0], linha[1], linha[2])
 
     def exibeSeguidos (self, usuario):
-        seguidos= []
-        for linha in self.matrizAdj.items():
-            for usernames in linha[1].items():
-                if usuario in usernames:
-                    seguidos.append(linha[0])
-
-        return print(f"Para o(a) usuário(a) de username: '{usuario}' foram encontradas {len(seguidos)} seguidos.")
+        print(f"Para o(a) usuário(a) de username: '{usuario}' foram encontradas {len(self.matrizAdj[usuario].keys())} pessoas seguidas.")
 
 odisseia = Grafo()
 odisseia.carregaGrafos("usuarios.csv")
