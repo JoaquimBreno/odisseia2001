@@ -25,7 +25,7 @@ import numpy as np
 # ----------------------------------------------------------------------------------------------
 # 
 #
-#  
+#   
 #
 #
 # ----------------------------------------------------------------------------------------------
@@ -43,8 +43,23 @@ class Grafo():
     def carregaGrafos(self, arquivo):
         df = pandas.read_csv(arquivo, header=None)
         for usernames in df[1]:
-            print(usernames)
+            self.iniciaGrafo(usernames)
+    
+    def carregaConexoes (self, arquivo):
+        df = pandas.read_csv(arquivo, header=None)
+        for _, linha in df.iterrows():
+            self.conectaGrafo(linha[0], linha[1], linha[2])
+
+    def exibeSeguidos (self, usuario):
+        seguidos= []
+        for linha in self.matrizAdj.items():
+            for usernames in linha[1].items():
+                if usuario in usernames:
+                    seguidos.append(linha[0])
+
+        return print(f"Para o(a) usuário(a) de username: '{usuario}' foram encontradas {len(seguidos)} seguidos.")
 
 odisseia = Grafo()
 odisseia.carregaGrafos("usuarios.csv")
-
+odisseia.carregaConexoes("conexoes.csv")
+odisseia.exibeSeguidos("sophia31")
