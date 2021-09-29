@@ -8,16 +8,17 @@ class Grafo():
         self.matrizAdj = {}
         """
         {[usuario] = {
-                       [segue] = peso 
+        [seguindo] = peso 
                        }
          }
         """
 
         self.userData = {}
         """
-        [usuario] = {[nome] = nome
-                       [seguindo] = usuario segue x pessoas
-                       [seguidores] = y pessoas seguem usuario
+        [usuario] = {
+        [nome] = nome
+        [seguindo] = usuario segue x pessoas
+        [seguidores] = y pessoas seguem usuario
                      }
         
          }
@@ -52,7 +53,7 @@ class Grafo():
         self.matrizAdj = dict(sorted(self.matrizAdj.items()))
         for usuario in self.matrizAdj:
             self.matrizAdj[usuario] = dict(sorted(self.matrizAdj[usuario].items()))
-            self.matrizAdj[usuario] = dict(sorted(self.matrizAdj[usuario].items(), reverse = True, key= lambda x: x[1]))
+            self.matrizAdj[usuario] = dict(sorted(self.matrizAdj[usuario].items(), reverse=True, key=lambda x: x[1]))
 
     def exibeSeguidos(self, usuario):
         print(f"Usuario {usuario} segue {(self.userData[usuario]['seguindo'])} pessoas. \n")
@@ -66,10 +67,12 @@ class Grafo():
             print(key)
 
     def _topK(self, k):
-        mais_seguidos = self.userData = dict(sorted(self.userData.items(), reverse=True, key = lambda x: x[1]["seguidores"] ))
+        mais_seguidos = dict(sorted(self.userData.items(), reverse=True, key=lambda x: x[1]["seguidores"]))
         top = []
         for pessoa in mais_seguidos.keys():
             top.append(pessoa)
+            if len(top) >= k:
+                break
         return top[:k]
 
     def topK(self, k):
